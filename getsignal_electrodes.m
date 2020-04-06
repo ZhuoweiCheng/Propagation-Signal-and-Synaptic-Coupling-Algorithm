@@ -1,6 +1,7 @@
 function signals=getsignal_electrodes(A,electrodes)
 signalspre=A(~cellfun('isempty',A));
 [m,numbers]=size(signalspre);
+signals=[];
 for i=1:numbers
     temps=signalspre{1,i};
     [m1,n1]=size(temps);
@@ -20,7 +21,9 @@ for i=1:numbers
         signals{1,i}=table(ID, name,delay,number_of_spikes);
     end
 end
-signals=signals(~cellfun('isempty',signals));
+if isempty(signals)~=1
+    signals=signals(~cellfun('isempty',signals));
+end
 end
 
 

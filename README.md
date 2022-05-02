@@ -15,23 +15,23 @@ Next, use automated_detection_propagation.m to extract the propagation signals i
 ```
 ### Inputs:
 
-spike_times:
+**spike_times:**
 
 1 x N cell. N cells represent N electrodes. Each cell contains a 1 x m vector representing the spike times for each electrode. The spike times should be in units of ms. This code deals with data sampled at 20000Hz. Upsample or downsample your data into 20000Hz sample rate before feeding into the algorithm.
           
-freq_thres: 
+**freq_thres:** 
 
 a value representing the frequency lower bound of the spiking
           frequency for all electrodes. Only electrodes that's above the
           threshold will considered as a reference electrode. For 
           example, enter 1 for 1Hz.
           
-seconds_recording:
+**seconds_recording:**
 
 The length of recording in seconds. For example, enter 120 for 
           2 minutes recordings.
           
-ratio:
+**ratio:**
 
 Let n1 denote the largest sum of counts in any 0.5 ms moving 
           window in the CCG and n2 denote the sum of counts of the 2 ms 
@@ -41,19 +41,19 @@ Let n1 denote the largest sum of counts in any 0.5 ms moving
           or the counts of the last 2 ms window as n2. This ratio is the 
           lower bound threshold for n2/n1. 
           
-thres_number_spikes:
+**thres_number_spikes:**
 
 lower bound of the number of short latency co-occurrences each
           electrode needs to have.
           
-p:
+**p:**
 
 percentage of the maximum number of co-occurrences required for
           all constituent electrodes. p should be between 0 to 100.
 
-Outputs:
+### Outputs:
 
-ListofPropagation:
+**ListofPropagation:**
       
 cell array contains tables of electrode cohorts for each
           propagation in a recording. Each table provides a list of
@@ -61,7 +61,7 @@ cell array contains tables of electrode cohorts for each
           electrode with the reference electrode, the number of
           co-occurrences and the n2/n1 ratio.
           
-Time_all:
+**Time_all:**
       
 A cell array where each cell contains a list of spike times in 
           the propagation with different number of anchor points chosen 

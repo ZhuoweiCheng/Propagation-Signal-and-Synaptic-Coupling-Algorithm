@@ -1,4 +1,4 @@
-function time_all=get_propagation_time(ListofPropagation,spike_times)
+function Time_all=get_propagation_time(ListofPropagation,spike_times)
 % This function generates a sequence of propagation eAPs for each 
 % propagation using different number of anchor points.
 %  
@@ -18,7 +18,7 @@ function time_all=get_propagation_time(ListofPropagation,spike_times)
 %           20000Hz sample rate before feeding into the algorithm.
 
 %   Output:
-%       time_all:
+%       Time_all:
 %           A cell array where each cell contains a list of spike times in 
 %           the propagation with different number of anchor points chosen 
 %           for each propagation in ListofPropagation with the same order. 
@@ -28,7 +28,7 @@ function time_all=get_propagation_time(ListofPropagation,spike_times)
 %           points, etc., until all constituent electrodes are used as 
 %           anchor points.
 [m,n] = size(ListofPropagation);
-time_all = [];
+Time_all = [];
 for i = 1:n
     time_signal = [];
     time = [];
@@ -57,6 +57,6 @@ for i = 1:n
         time = [time reference_spike_times(ind_all)];
         time_signal{1,n_ele} = sort(unique(time));
     end
-    time_all{1,i} = time_signal;
+    Time_all{1,i} = time_signal;
 end
 end

@@ -48,22 +48,22 @@ lower bound of the number of short latency co-occurrences each
           
 p:
 
-          percentage of the maximum number of co-occurrences required for
+percentage of the maximum number of co-occurrences required for
           all constituent electrodes. p should be between 0 to 100.
 
 Outputs:
 
-      ListofPropagation:
+ListofPropagation:
       
-          cell array contains tables of electrode cohorts for each
+cell array contains tables of electrode cohorts for each
           propagation in a recording. Each table provides a list of
           candidate electrodes along with the latency between each
           electrode with the reference electrode, the number of
           co-occurrences and the n2/n1 ratio.
           
-      Time_all:
+Time_all:
       
-          A cell array where each cell contains a list of spike times in 
+A cell array where each cell contains a list of spike times in 
           the propagation with different number of anchor points chosen 
           for each propagation in ListofPropagation with the same order. 
           The first element in each cell is the number of propagating 

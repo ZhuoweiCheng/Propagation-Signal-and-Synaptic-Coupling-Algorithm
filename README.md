@@ -17,11 +17,7 @@ Inputs:
 
 spike_times:
 
-          1 x N cell. N cells represent N electrodes. Each cell contains 
-          a 1 x m vector representing the spike times for each electrode.
-          The spike times should be in units of ms. This code deals with 
-          data sampled at 20000Hz. Upsample or downsample your data into 
-          20000Hz sample rate before feeding into the algorithm.
+1 x N cell. N cells represent N electrodes. Each cell contains a 1 x m vector representing the spike times for each electrode. The spike times should be in units of ms. This code deals with data sampled at 20000Hz. Upsample or downsample your data into 20000Hz sample rate before feeding into the algorithm.
           
 freq_thres: 
 

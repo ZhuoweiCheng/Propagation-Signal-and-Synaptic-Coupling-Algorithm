@@ -2,24 +2,64 @@
 This is a package for detecting eAP propagation and identifying synaptic coupling.
 
 ## Installation
-download the full folder and put it in the path of your matlab. This works on Matlab 2018 and later versions.
+download the full folder and put it in the path of your matlab. This works on Matlab R2018a and later versions.
 
 ## Usage
 The input of our algorithm is a cell array (1 x N cell) of spike times where each cell represent one electrode. 
 Each cell contains a 1 x m vector representing the spike times for each electrode. The spike times should be in units of ms. 
 This code deals with data sampled at 20000Hz. Upsample or downsample your data into 20000Hz sample rate before feeding into the algorithm.
 
-Next, use automated_p_s_c.m to extract the propagation signals and synaptic coupling information in the array
+Next, use automated_detection_propagation.m to extract the propagation signals in the array
 ```matlab
-[signals, s_c_1, R_time, s_c_table, Bin_Histogram, delay_time]=automated_p_s_c(C, D, electrodes)
+[ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, ratio, thres_number_spikes, p);
 ```
-signals is a table of propagation signals.
+Inputs:
+spike_times:
+          1 x N cell. N cells represent N electrodes. Each cell contains 
+          a 1 x m vector representing the spike times for each electrode.
+          The spike times should be in units of ms. This code deals with 
+          data sampled at 20000Hz. Upsample or downsample your data into 
+          20000Hz sample rate before feeding into the algorithm.
+freq_thres: 
+          a value representing the frequency lower bound of the spiking
+          frequency for all electrodes. Only electrodes that's above the
+          threshold will considered as a reference electrode. For 
+          example, enter 1 for 1Hz.
+seconds_recording:
+          The length of recording in seconds. For example, enter 120 for 
+          2 minutes recordings.
+ratio:
+          Let n1 denote the largest sum of counts in any 0.5 ms moving 
+          window in the CCG and n2 denote the sum of counts of the 2 ms 
+          window with the location of the largest sum in the center. 
+          If the largest sum is found in the first 1 ms or the last 1 ms
+          of the CCG, take the sum of the counts of the first 2 ms window
+          or the counts of the last 2 ms window as n2. This ratio is the 
+          lower bound threshold for n2/n1. 
+thres_number_spikes:
+          lower bound of the number of short latency co-occurrences each
+          electrode needs to have.
+p:
+          percentage of the maximum number of co-occurrences required for
+          all constituent electrodes. p should be between 0 to 100.
 
-R_time is the spike times of each signal.
+Outputs:
+      ListofPropagation:
+          cell array contains tables of electrode cohorts for each
+          propagation in a recording. Each table provides a list of
+          candidate electrodes along with the latency between each
+          electrode with the reference electrode, the number of
+          co-occurrences and the n2/n1 ratio.
+      Time_all:
+          A cell array where each cell contains a list of spike times in 
+          the propagation with different number of anchor points chosen 
+          for each propagation in ListofPropagation with the same order. 
+          The first element in each cell is the number of propagating 
+          spike times isolated with two anchor points, the second element
+          is the propagating spike times isolated with three anchor 
+          points, etc., until all constituent electrodes are used as 
+          anchor points.
 
-s_c_table returns a table of the coupling between each signal and downstream electrodes.
-
-Bin_Histogram and delay_time provide the Cross correlagrams and the latency information for each signal-electrode pair.
 
 ### Post analysis
 Matching_PS.m and Search_PS are used to find similar propagation signals in different arrays. They can be used to compare between the same culture at different div or before-/after-drug.

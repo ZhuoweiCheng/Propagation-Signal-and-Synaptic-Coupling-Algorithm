@@ -1,5 +1,5 @@
 # Propagation-Signal-and-Synaptic-Coupling-Algorithm
-This is a package for detecting propagation signal and identifying synaptic coupling from 120pMEA200/30iR-Ti device.
+This is a package for detecting propagation signal and identifying synaptic coupling.
 
 ## Installation
 download the full folder and put it in the path of your matlab. 

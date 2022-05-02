@@ -1,21 +1,13 @@
 # Propagation-Signal-and-Synaptic-Coupling-Algorithm
-This is a package for detecting propagation signal and identifying synaptic coupling.
+This is a package for detecting eAP propagation and identifying synaptic coupling.
 
 ## Installation
-download the full folder and put it in the path of your matlab. 
+download the full folder and put it in the path of your matlab. This works on Matlab 2018 and later versions.
 
 ## Usage
-### Extracting 
-To start with a h5 file output from MEA, first use datatypetran.m to convert into the format for this package.
-
-If start with an csv output from MEAviewer, first use datatypetran2.m to convert the data into the format for this package.
-
-These two files extracts the spike times and amplitude for each electrode.
-```matlab
-C=datatypetran(spike_info, electrodes)
-[C,D]=datatypetran2('name.csv',electrodes)
-```
-electrodes is a list of the electrodes in this device. It is provided in this package in electrodes.mat.
+The input of our algorithm is a cell array (1 x N cell) of spike times where each cell represent one electrode. 
+Each cell contains a 1 x m vector representing the spike times for each electrode. The spike times should be in units of ms. 
+This code deals with data sampled at 20000Hz. Upsample or downsample your data into 20000Hz sample rate before feeding into the algorithm.
 
 Next, use automated_p_s_c.m to extract the propagation signals and synaptic coupling information in the array
 ```matlab

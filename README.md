@@ -13,7 +13,7 @@ Next, use automated_detection_propagation.m to extract the propagation signals i
 ```matlab
 [ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, ratio, thres_number_spikes, p);
 ```
-Inputs:
+###Inputs:
 
 spike_times:
 
@@ -21,19 +21,19 @@ spike_times:
           
 freq_thres: 
 
-          a value representing the frequency lower bound of the spiking
+a value representing the frequency lower bound of the spiking
           frequency for all electrodes. Only electrodes that's above the
           threshold will considered as a reference electrode. For 
           example, enter 1 for 1Hz.
           
 seconds_recording:
 
-          The length of recording in seconds. For example, enter 120 for 
+The length of recording in seconds. For example, enter 120 for 
           2 minutes recordings.
           
 ratio:
 
-          Let n1 denote the largest sum of counts in any 0.5 ms moving 
+Let n1 denote the largest sum of counts in any 0.5 ms moving 
           window in the CCG and n2 denote the sum of counts of the 2 ms 
           window with the location of the largest sum in the center. 
           If the largest sum is found in the first 1 ms or the last 1 ms
@@ -43,7 +43,7 @@ ratio:
           
 thres_number_spikes:
 
-          lower bound of the number of short latency co-occurrences each
+lower bound of the number of short latency co-occurrences each
           electrode needs to have.
           
 p:

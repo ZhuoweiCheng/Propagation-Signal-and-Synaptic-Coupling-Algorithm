@@ -23,7 +23,7 @@ An example is provided in Analysis/Example.
           
 **freq_thres:** 
 
-a value representing the frequency lower bound of the spiking
+This value representing the frequency lower bound of the spiking
           frequency for all electrodes. Only electrodes that's above the
           threshold will considered as a reference electrode. For 
           example, enter 1 for 1Hz.
@@ -45,7 +45,7 @@ Let n1 denote the largest sum of counts in any 0.5 ms moving
           
 **thres_number_spikes:**
 
-lower bound of the number of short latency co-occurrences each
+lower bound of the number of short latency co-occurrences (n1) each
           electrode needs to have.
           
 **p:**

@@ -13,6 +13,8 @@ Next, use automated_detection_propagation.m to extract the propagation signals i
 ```matlab
 [ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, ratio, thres_number_spikes, p);
 ```
+An example is provided in Analysis/Example.
+
 ### Inputs:
 
 **spike_times:**

@@ -41,7 +41,6 @@ n_e = length(spike_times);
 smallwindow = 0.5;
 t = int64(smallwindow/0.05);
 CandidateCohorts = cell(1,n_e);
-delta = 0.05/10;
 parfor electrode = 1:n_e
     ref = spike_times{1,electrode};
     [~, n] = size(ref);
@@ -56,9 +55,12 @@ parfor electrode = 1:n_e
         for electrode2 = 1:n_e
             CCG = zeros(1, 61);  
                 tar = spike_times{1, electrode2};
-                for k = 1:n
-                    for binvalue = -1.5:0.05:1.5
-                        if isempty(find(tar < ref(1, k) + binvalue + delta & tar > ref(1, k) + binvalue - delta))==0
+                for k=1:n
+                    ref_value = ref(1,k);
+                    index = find(tar >= ref_value-1.5&tar <= ref_value+1.5);
+                    if isempty(index)==0
+                        for i_index = 1:length(index)
+                            binvalue = tar(index(i_index)) - ref_value;
                             CCG(1, int64(binvalue/0.05 + 31))=CCG(1, int64(binvalue/0.05 + 31)) + 1;
                         end
                     end
@@ -88,11 +90,11 @@ parfor electrode = 1:n_e
                     spikes_ratio(1,electrode2) = spikes_smallwindow/spikes_bigwindow;
                 end        
         end
-        index = find(timedelay >= -1.5);
-        CandidateCohorts{1,electrode}(1,:) = index;
-        CandidateCohorts{1,electrode}(2,:) = timedelay(index);
-        CandidateCohorts{1,electrode}(3,:) = smallwindow_cooccurrences(index);
-        CandidateCohorts{1,electrode}(4,:) = spikes_ratio(index);
+        ind = find(timedelay >= -1.5);
+        CandidateCohorts{1,electrode}(1,:) = ind;
+        CandidateCohorts{1,electrode}(2,:) = timedelay(ind);
+        CandidateCohorts{1,electrode}(3,:) = smallwindow_cooccurrences(ind);
+        CandidateCohorts{1,electrode}(4,:) = spikes_ratio(ind);
     end
 end
 end

@@ -11,7 +11,7 @@ This code deals with data sampled at 20000Hz. Upsample or downsample your data i
 
 Next, use automated_detection_propagation.m to extract the propagation signals in the array
 ```matlab
-[ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, ratio, thres_number_spikes, p);
+[ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, thres_number_spikes, ratio, thres_number_spikes, p);
 ```
 An example is provided in Analysis/Example.
 
@@ -33,6 +33,9 @@ This value representing the frequency lower bound of the spiking
 The length of recording in seconds. For example, enter 120 for 
           2 minutes recordings.
           
+**thres_number_spikes:**
+lower bound of the number of short latency co-occurrences each electrode needs to have.
+
 **ratio:**
 
 Let n1 denote the largest sum of counts in any 0.5 ms moving 
@@ -43,8 +46,7 @@ Let n1 denote the largest sum of counts in any 0.5 ms moving
           or the counts of the last 2 ms window as n2. This ratio is the 
           lower bound threshold for n2/n1. 
           
-**thres_number_spikes:**
-
+**thres_cooccurrences:**
 lower bound of the number of short latency co-occurrences (n1) each
           electrode needs to have.
           

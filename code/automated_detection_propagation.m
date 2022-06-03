@@ -1,5 +1,5 @@
-function [ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, ratio, thres_number_spikes, p)
-%This function detects eAP propagation in a recording and generates a 
+function [ListofPropagation, Time_all] = automated_detection_propagation(spike_times, thres_freq, seconds_recording, thres_number_spikes, ratio, thres_cooccurrences, p)
+% This function detects eAP propagation in a recording and generates a 
 % collection of cohort electrodes, ach representing an eAP propagation in 
 % each recording. Along with the cohort electrodes, this function also
 % outputs the propagating spike times for each eAP propagation with
@@ -12,7 +12,7 @@ function [ListofPropagation, Time_all] = automated_detection_propagation(spike_t
 %           The spike times should be in units of ms. This code deals with 
 %           data sampled at 20000Hz. Upsample or downsample your data into 
 %           20000Hz sample rate before feeding into the algorithm.
-%       freq_thres: 
+%       thres_freq: 
 %           a value representing the frequency lower bound of the spiking
 %           frequency for all electrodes. Only electrodes that's above the
 %           threshold will considered as a reference electrode. For 
@@ -28,13 +28,13 @@ function [ListofPropagation, Time_all] = automated_detection_propagation(spike_t
 %           of the CCG, take the sum of the counts of the first 2 ms window
 %           or the counts of the last 2 ms window as n2. This ratio is the 
 %           lower bound threshold for n2/n1. 
-%       thres_number_spikes:
+%       thres_cooccurrences:
 %           lower bound of the number of short latency co-occurrences each
 %           electrode needs to have.
 %       p:
 %           percentage of the maximum number of co-occurrences required for
 %           all constituent electrodes. p should be between 0 to 100.
-%
+% 
 %   Outputs:
 %       ListofPropagation:
 %           cell array contains tables of electrode cohorts for each
@@ -52,8 +52,8 @@ function [ListofPropagation, Time_all] = automated_detection_propagation(spike_t
 %           points, etc., until all constituent electrodes are used as 
 %           anchor points.
 
-CandidateCohorts = scan_reference_electrode(spike_times, freq_thres, seconds_recording, ratio);
-ElectrodeCohorts = rescan_candidate_cohorts(CandidateCohorts, thres_number_spikes, p);
+CandidateCohorts = scan_reference_electrode(spike_times, thres_freq, seconds_recording, thres_number_spikes, ratio);
+ElectrodeCohorts = rescan_candidate_cohorts(CandidateCohorts, thres_cooccurrences, p);
 ListofPropagation = get_propagation(ElectrodeCohorts);
 Time_all = get_propagation_time(ListofPropagation,spike_times);
 end

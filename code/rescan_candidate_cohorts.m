@@ -1,4 +1,4 @@
-function ElectrodeCohorts = rescan_candidate_cohorts(CandidateCohorts, thres_number_spikes, p)
+function ElectrodeCohorts = rescan_candidate_cohorts(CandidateCohorts, thres_cooccurrences, p)
 % This function rescans each set of candidate electrodes found for each 
 % reference electrode. First, find the electrode with the maximum number of
 % co-occurrences with the reference electrode. Second, scan through all 
@@ -38,7 +38,7 @@ for i = 1:numbers
         current_cell = CandidateCohorts{1,i};
         [m1,n1] = size(current_cell);
         for j = n1:-1:1
-            if current_cell(3,j) < thres_number_spikes
+            if current_cell(3,j) < thres_cooccurrences
                 current_cell(:,j) = [];
             end
         end

@@ -20,6 +20,9 @@ function [ListofPropagation, Time_all] = automated_detection_propagation(spike_t
 %       seconds_recording:
 %           The length of recording in seconds. For example, enter 120 for 
 %           2 minutes recordings.
+%       thres_number_spikes:
+%           lower bound of the number of short latency co-occurrences each
+%           electrode needs to have.
 %       ratio:
 %           Let n1 denote the largest sum of counts in any 0.5 ms moving 
 %           window in the CCG and n2 denote the sum of counts of the 2 ms 

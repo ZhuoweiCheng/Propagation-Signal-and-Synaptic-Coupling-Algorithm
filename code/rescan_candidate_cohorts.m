@@ -17,6 +17,14 @@ function ElectrodeCohorts = rescan_candidate_cohorts(CandidateCohorts, thres_coo
 %           along with the latency between each electrode with the 
 %           reference electrode, the number of co-occurrences and the n2/n1
 %           ratio.
+%       freq_thres:
+%           This value representing the frequency lower bound of the spiking
+%           frequency for all electrodes. Only electrodes that's above the 
+%           threshold will considered as a reference electrode. For 
+%           example, enter 1 for 1Hz.         
+%       seconds_recording:
+%           The length of recording in seconds. For example, enter 120 for 
+%           2 minutes recordings.  
 %       thres_number_spikes:
 %           lower bound of the number of short latency co-occurrences each
 %           electrode needs to have.

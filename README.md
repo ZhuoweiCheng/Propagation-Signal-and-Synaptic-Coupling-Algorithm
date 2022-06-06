@@ -13,6 +13,12 @@ Next, use automated_detection_propagation.m to extract the propagation signals i
 ```matlab
 [ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, thres_number_spikes, ratio, thres_number_spikes, p);
 ```
+Use (freq_thres and seconds_recording) or thres_number_spikes:
+If use freq_thres + seconds_recording:
+[ListofPropagation, Time_all] = automated_detection_propagation(spike_times, [], [], thres_number_spikes, ratio, thres_number_spikes, p);
+
+If use thres_number_spikes:
+[ListofPropagation, Time_all] = automated_detection_propagation(spike_times, freq_thres, seconds_recording, [], ratio, thres_number_spikes, p);
 An example is provided in Analysis/Example.
 
 ### Inputs:
@@ -34,7 +40,7 @@ The length of recording in seconds. For example, enter 120 for
           2 minutes recordings.
           
 **thres_number_spikes:**
-lower bound of the number of short latency co-occurrences each electrode needs to have.
+lower bound of the number of spikes each reference electrode needs to have. For example, enter 100 for 100 spikes in total.
 
 **ratio:**
 

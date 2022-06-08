@@ -92,4 +92,3 @@ Matching_PS.m and Search_PS are used to find similar propagation signals in diff
 
 Updatesctable_kstest.m can update the s_c_table with ks test stats comparing the amplitude distribution between the synaptic couple spikes and all spikes on a certain electrode.
 
-Analysis examples are given in Analysis/Example/example.m
